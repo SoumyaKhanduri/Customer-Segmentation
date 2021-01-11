@@ -21,21 +21,22 @@ def predict():
     '''
     For rendering results on HTML GUI
     '''
-    Total_purchase = (request.form['Total_purchase'])
-    times_bought = (request.form['times_bought'])
+    
+    Purchase = (request.form['Purchase'])
+    Freqency = (request.form['Freqency'])
     last_purchase = (request.form['last_purchase'])
 
 
-    data = [[Total_purchase, times_bought, last_purchase]]
+    data = [[Purchase, Freqency, last_purchase]]
     
     prediction = model.predict(data)
 
     if float(prediction) == 0:
-        return render_template('index.html', prediction_text='This is not a Fraud Transaction')
+        return render_template('index.html', prediction_text='High value customer')
     elif float(prediction) == 1:
-        return render_template('index.html', prediction_text='This is not a Fraud Transaction')
+        return render_template('index.html', prediction_text='Medium value customer')
     elif float(prediction) == 2:
-        return render_template('index.html', prediction_text='This is not a Fraud Transaction')
+        return render_template('index.html', prediction_text='Low value customer ')
         
             
 if __name__ == "__main__":
